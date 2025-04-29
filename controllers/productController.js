@@ -91,72 +91,7 @@ const deleteProduct = async (req, res) =>{
     }
 }
 
-//filter product stock or not
 
-// const filterProduct = async (req, res) => {
-//    try {
-//     let {inStock} = req.query
-//     let filter = {}
-
-//     if(inStock){
-//         filter.inStock = inStock === "true"
-//     }
-//     const product = await Product.find(filter)
-//     res.status(200).json(product)
-//    } catch (error) {
-//     res.status(500).json({error : error.message})
-//    }
-//     }
-
-// //sorting price assen or price desen
-
-// const sortProduct = async (req, res) => {
-//     try {
-//         const {sort} = req.query
-//         const sortOption = {}
-//         if(sort === 'price_asc'){
-//             sortOption.price = 1 ;
-//         }else if(sort === 'price_desc'){
-//             sortOption.price = -1
-//         }
-
-//         const product = await Product.find().sort(sortOption)
-//         res.json(product)
-//     } catch (error) {
-//         res.status(500).json({error : error.message})
-//     }
-// }
-   
-// //search products by name
-
-// const serachProduct = async (req, res) => {
-   
-//     try {
-//         const {search} = req.query
-//         const filter = {}
-//         if(search){
-//             filter.name =  {$regex: search, $option: "i"}
-//         }
-//         const product = await Product.find(filter)
-//         res.json(product)
-//     } catch (error) {
-//         res.status(500).json({error : error.message})
-//     }
-// }
-
-// //pagination
-
-// const pagination = async (req, res) => {
-//     try {
-//         const {page = 1, limit = 10} = req.query
-//       const product = await Product.find()
-//       .limit(Number(limit))
-//       .skip(page - 1 * Number(limit))
-//       res.json(product)
-//     } catch (error) {
-//         res.status(500).json({error : error.message})
-//     }
-// }
 
 module.exports = {
     createProduct,
