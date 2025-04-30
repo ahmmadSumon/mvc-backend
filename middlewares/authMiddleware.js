@@ -4,8 +4,8 @@ const User = require('../models/user')
 const protect = async (req, res, next) => {
     try {
         const token = req.headers.authorization?.split(' ')[1]
-        if(!token){ return res.satatus(401).json({error: error.message})}
-        const decoded =   jwt.verify(token , 'secretkey')
+        if(!token){ return res.status(401).json({ message: 'Not authorized, no token' })}
+        const decoded =   jwt.verify(token , process.env.JWT_SECRET)
         req.user = await User.findById(decoded.id).select('-password')
         next()    
     } catch (error) {
@@ -14,11 +14,11 @@ const protect = async (req, res, next) => {
 }
 
 //only admin can access
-const admin = (req, res) => {
+const admin = (req, res, next) => {
     if(req.user && req.user.role === 'admin'){
         next()
     } else{
-        res.status(401).json({message: 'admin only'})
+        res.status(403).json({message: 'admin only'})
     }
 }
 
